@@ -1,0 +1,61 @@
+@model TecnoGasHogar.Models.SolicitudServicio
+
+@{
+    ViewData["Title"] = "Registrar Solicitud";
+}
+
+<h1>Registrar Solicitud de Servicio</h1>
+
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Mensaje"]
+    </div>
+}
+
+<form asp-action="Crear" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Cliente" class="control-label"></label>
+        <input asp-for="Cliente" class="form-control" />
+        <span asp-validation-for="Cliente" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Telefono" class="control-label"></label>
+        <input asp-for="Telefono" class="form-control" />
+        <span asp-validation-for="Telefono" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Distrito" class="control-label"></label>
+        <input asp-for="Distrito" class="form-control" />
+        <span asp-validation-for="Distrito" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="TipoServicio" class="control-label"></label>
+        <select asp-for="TipoServicio" class="form-control">
+            <option value="">-- Seleccione --</option>
+            <option value="Instalación">Instalación</option>
+            <option value="Mantenimiento">Mantenimiento</option>
+            <option value="Revisión">Revisión</option>
+            <option value="Fuga">Fuga</option>
+        </select>
+        <span asp-validation-for="TipoServicio" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Descripcion" class="control-label"></label>
+        <textarea asp-for="Descripcion" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Registrar" class="btn btn-primary" />
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
