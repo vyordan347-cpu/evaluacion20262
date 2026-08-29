@@ -13,11 +13,20 @@ namespace TecnoGasHogar.Controllers
         {
             _context = context;
         }
+        
 
         // GET: Solicitudes/Crear
         public IActionResult Crear()
         {
             return View();
+        }
+        public async Task<IActionResult> Listar()
+        {
+            var solicitudes = await _context.SolicitudesServicio
+                .OrderByDescending(s => s.FechaRegistro)
+                .ToListAsync();
+
+            return View(solicitudes);
         }
 
         // POST: Solicitudes/Crear
